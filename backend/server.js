@@ -9,7 +9,7 @@ const messageRoutes = require("./Router/messageRoutes");
 const userRoutes = require("./Router/userRoutes");
 const app = require("./Socket/socket");
 const path = require("path");
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.port || 8000;
 
 dotenv.config({ path: "./../config.env" });
 const DB = process.env.DATABASE;
@@ -43,12 +43,6 @@ mongoose
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
-
-app.use(express.static(path.join(_dirname, "/frontend/build/index.html")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
-});
 
 app.listen(PORT, () => {
   console.log("app running on the port 8000");
