@@ -11,7 +11,7 @@ const app = require("./Socket/socket");
 const path = require("path");
 const PORT = process.env.PORT || 8000;
 
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "./../config.env" });
 const DB = process.env.DATABASE;
 
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use(cookieParser());
 app.use(compression());
 
 const _dirname = path.resolve("Nodejs", "ChattApp", "frontend");
-console.log(_dirname)
+console.log(_dirname);
 
 app.use(
   cors({
@@ -44,10 +44,10 @@ app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
 
-app.use(express.static(path.join(_dirname,"/frontend/build/index.html")))
+app.use(express.static(path.join(_dirname, "/frontend/build/index.html")));
 
 app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
 
 app.listen(PORT, () => {
