@@ -13,22 +13,21 @@ const MessageInput = () => {
     e.preventDefault();
     setLoading(true);
     try {
-
       const response = await axios.post(
         `http://localhost:8000/api/messages/send/${selectConversation._id}`,
         {
-          message: message // Include the message in the request body
+          message: message, // Include the message in the request body
         },
         {
           headers: {
-            Authorization: `Bearer ${authUser.token}` // Send token in Authorization header
-          }
+            Authorization: `Bearer ${authUser.token}`, // Send token in Authorization header
+          },
         }
       );
       const data = response.data;
       console.log(data);
       setMessages([...messages, data]);
-      setMessage("")
+      setMessage("");
       if (data.error) {
         throw new Error(data.error);
       }
@@ -54,7 +53,11 @@ const MessageInput = () => {
           className="absolute  inset-y-0 end-0 flex items-center pe-3 text-2xl"
           onClick={sendMessage}
         >
-         {loading? <div className="loading loading-spinner"></div> : <IoIosSend />}
+          {loading ? (
+            <div className="loading loading-spinner"></div>
+          ) : (
+            <IoIosSend />
+          )}
         </button>
       </div>
     </form>

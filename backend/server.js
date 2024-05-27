@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(compression());
 
-const _dirname = path.resolve("Nodejs", "ChattApp", "frontend");
+const _dirname = path.resolve();
 console.log(_dirname);
 
 app.use(
